@@ -21,6 +21,7 @@
 
 <body>
     <!-- Хедер -->
+    <div class="backdrop">
     <header class="header">
         <div class="container">
             <nav class="site-nav">
@@ -49,12 +50,15 @@
 
     <main>
         <!-- Герой -->
+         
         <section class="section hero">
-            <div class="container">
-                <h1 class="hero-title">ЕФЕКТИВНІ РІШЕННЯ ДЛЯ ВАШОГО БІЗНЕСУ</h1>
+              <div class="container">
+                                <h1 class="hero-title">ЕФЕКТИВНІ РІШЕННЯ ДЛЯ ВАШОГО БІЗНЕСУ</h1>
                 <button type="button" class="hero-btn">Замовити послугу</button>
             </div>
-            <div class="backdrop">
+            </section>
+           
+                <div class="modal">
                 <button type="button" class="hero-close-btn">
                 <svg width="11" hight="11" class="hero-icons">
                     <use href="./images/icons.svg#icon-close"></use>
@@ -62,7 +66,8 @@
             </button>
             </div>
 
-        </section>
+
+        
 
         <!-- Переваги -->
         <section class="section benefits">
@@ -111,6 +116,7 @@
                 </ul>
             </div>
         </section>
+    </div>
         <!-- Напрямки діяльності -->
         <section class="section promo">
             <div class="container">
@@ -342,6 +348,7 @@
         </div>
     </footer>
     <script src="./js/modal.js"></script>
+
 </body>
 
 </html>
