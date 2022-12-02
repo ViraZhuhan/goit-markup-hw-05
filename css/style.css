@@ -14,6 +14,7 @@
     --header-line-color: #ECECEC;
     --icons-color: #AFB1B8;
     --border-color: #EEEEEE;
+    --timeng-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *,
@@ -70,6 +71,9 @@ body {
     line-height: 1.14;
     letter-spacing: 0.02em;
     text-decoration: none;
+
+    transition: transform 250ms var(--timeng-function),
+    background-color 250ms linear;
 }
 
 .list {
@@ -106,7 +110,7 @@ body {
 .nav-list {
     display: flex;
     align-items: center;
-    
+
     margin-left: auto;
     padding: 32px 0;
 }
@@ -116,9 +120,9 @@ body {
 }
 
 .nav-link {
-     position: relative;
-    
-     color: var(--primary-link-color);
+    position: relative;
+    color: var(--primary-link-color);
+    transition: color 250ms var(--timeng-function);
 }
 
 .nav-link:hover,
@@ -134,6 +138,7 @@ body {
     line-height: 1.19;
     text-decoration: none;
     margin-right: 93px;
+    transition: color 250ms var(--timeng-function);
 }
 
 .logo:hover,
@@ -153,7 +158,7 @@ body {
     position: absolute;
     bottom: -33px;
     right: 0px;
-    
+
     content: "";
     width: 100%;
     height: 4px;
@@ -184,6 +189,8 @@ body {
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 0.02em;
+
+    transition: color 250ms var(--timeng-function);
 }
 
 .contacts-link:hover,
@@ -205,36 +212,8 @@ body {
     fill: currentColor;
 }
 
-.backdrop {
-    position: relative;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-   
-    width: 528px;
-    height: 521px;
-    
-    background-color: var(--primary-white-color);
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
-    0px 1px 1px rgba(0, 0, 0, 0.14), 
-    0px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-
 /*--------- Герой--------- */
 .hero {
-    
     height: 600px;
     text-align: center;
     padding: 200px 0;
@@ -266,7 +245,6 @@ body {
     border-radius: 4px;
     padding: 10px 32px;
 
-
     font-family: inherit;
     background-color: var(--accent-bg-color);
     color: var(--primary-white-color);
@@ -274,8 +252,9 @@ body {
     font-size: 16px;
     line-height: 1.88;
     letter-spacing: 0.06em;
-
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+    transition: background-color 250ms var(--timeng-function);
 }
 
 .hero-btn:hover,
@@ -283,9 +262,67 @@ body {
     background-color: var(--accent-btn-color);
 }
 
+.hero-icons {
+    width: 11px;
+    height: 11px;
+    fill: var(--primary-logo-color);
+}
+
+.backdrop {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    min-width: 528px;
+    min-height: 521px;
+
+    background-color: var(--primary-white-color);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+        0px 1px 1px rgba(0, 0, 0, 0.14),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transform: scale(0 0);
+    transition: changeBgColor 250ms var(--timeng-function),
+}
+
+.modal:hover {
+    animation-name: changeBgColor;
+    animation-duration: 2000ms;
+}
+
+    @keyframes changeBgColor {
+        0% {
+          background-color: var(--title-text-color);
+        }
+        50% {
+          background-color: var(--hero-bg-color);
+        }
+        100% {
+          background-color: var(--primary-white-color);
+        }
+      }
+
 
 .hero-close-btn {
-    position: absolute; 
+    position: absolute;
     top: 0;
     right: 0;
 
@@ -295,28 +332,22 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.hero-icons {
-    width: 11px;
-    height: 11px;
-    fill: var(--primary-logo-color);
-}
-
 
 /*--------- Переваги--------- */
 .benefits,
 .clients {
-    padding: 94px 0;
+    padding-top: 94px;
 }
 
 .benefits-list {
     display: flex;
- 
+
 }
 
 .benefits-icons-container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 270px;
     height: 120px;
 
@@ -326,8 +357,8 @@ body {
 }
 
 .benefits-icons {
-   width: 70px;
-   height: 70px;
+    width: 70px;
+    height: 70px;
 }
 
 .benefits-list>li:not(:last-child) {
@@ -349,7 +380,7 @@ body {
 
 /*--------- Напрямки діяльності та Команда та Клієнти---------*/
 .promo {
-    padding-bottom: 94px;
+    padding-top: 94px;
 }
 
 .promo-title,
@@ -370,7 +401,6 @@ body {
     background-color: var(--primary-white-color);
 }
 
-
 .promo-list>img {
     min-width: 370px;
 }
@@ -383,12 +413,11 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-        
-    width: 370px;
-    height: 70px;
+
+    width: 100%;
     background: rgba(47, 48, 58, 0.8);
 
-    padding-top: 27px;
+    padding: 27px 0;
     font-weight: 700;
     font-size: 14px;
     line-height: 1.14;
@@ -401,6 +430,7 @@ body {
 .team {
     background: var(--second-bg-color);
     padding: 94px 0;
+
 }
 
 .team-list {
@@ -444,7 +474,6 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
-
 }
 
 .team-soc-items {
@@ -464,6 +493,9 @@ body {
     align-items: center;
     border-radius: 50%;
     fill: var(--icons-color);
+
+    transition: background-color 250ms var(--timeng-function),
+        fill 250ms var(--timeng-function);
 }
 
 .team-soc-icons {
@@ -477,8 +509,12 @@ body {
     fill: var(--primary-white-color);
 }
 
+.clients {
+    padding-bottom: 94px;
+}
+
 .clients-list {
-   display: flex;
+    display: flex;
 }
 
 .clients-link {
@@ -491,6 +527,8 @@ body {
     border-radius: 4px;
     fill: var(--icons-color);
 
+    transition: fill 250ms var(--timeng-function),
+        border 250ms var(--timeng-function);
 }
 
 .clients-items:not(:last-child) {
@@ -503,10 +541,9 @@ body {
     border: 1px solid var(--accent-text-color);
 }
 
- .clients-icons {
-    
+.clients-icons {
     height: 60px;
- }    
+}
 
 /*--------- Футер---------*/
 footer {
@@ -530,12 +567,15 @@ footer .logo {
 .address,
 .contacts {
     display: block;
+
     color: var(--primary-white-color);
     font-style: normal;
     text-decoration: none;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.71;
+
+    transition: color 250ms var(--timeng-function);
 }
 
 .address:hover,
@@ -549,6 +589,7 @@ footer .logo {
 
 footer .contacts {
     color: var(--footer-contact-color);
+    transition: color 250ms var(--timeng-function);
 }
 
 footer .contacts:hover,
@@ -585,13 +626,17 @@ footer .join {
 }
 
 .footer-soc-link {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     fill: var(--primary-white-color);
+
+    transition: background-color 250ms var(--timeng-function),
+        fill 250ms var(--timeng-function);
 
 }
 
@@ -632,6 +677,10 @@ footer .join {
     border-radius: 4px;
     background-color: var(--second-bg-color);
     border: transparent;
+
+    transition: background-color 250ms var(--timeng-function),
+        box-shadow 250ms var(--timeng-function),
+        color 250ms var(--timeng-function);
 }
 
 .preview-button>li:not(:last-child) {
@@ -656,17 +705,52 @@ footer .join {
     margin: 0 auto;
 }
 
-.preview-wrap {
+
+.preview-thumb {
+    position: relative;
+    overflow: hidden;
+
     width: 370px;
 }
 
-.preview-link {display: block;}
+.preview-subtext {
+    position: absolute;
+    left: 0;
+    top: 100%;
+
+    padding: 63px 24px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.56;
+    letter-spacing: 0.03em;
+    color: var(--primary-white-color);
+
+    transition: transform 250ms var(--timeng-function),
+                background-color 250ms var(--timeng-function),
+                opacity 250ms var(--timeng-function);
+    transform: translateY(0%);
+    opacity: 0;
+}
+
+.preview-thumb:hover .preview-subtext {
+    opacity: 1;
+    transform: translateY(-100%);
+    background-color: rgba(33, 150, 243, 0.9);
+}
+
+.preview-link {
+    display: block;
+}
 
 .preview-link:hover,
 .preview-link:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
-     0px 4px 4px rgba(0, 0, 0, 0.06), 
-     1px 4px 6px rgba(0, 0, 0, 0.16);
+        0px 4px 4px rgba(0, 0, 0, 0.06),
+        1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
 .title-text-wrap {
